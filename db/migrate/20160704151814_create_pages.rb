@@ -1,8 +1,23 @@
 class CreatePages < ActiveRecord::Migration
+  
   def change
     create_table :pages do |t|
-
-      t.timestamps null: false
+      t.integer("subject_id");
+      #t.references(:subject_id);
+      t.string("name");
+      t.string("permalink");
+      t.string("position");
+      t.boolean("visible", :deafult=>false);
+      t.timestamps;
     end
+  
+    add_index("pages", "subject_id");
+    add_index("pages", "permalink");
+    
   end
+  
+  def down
+    drop_table :pages;
+  end
+  
 end
