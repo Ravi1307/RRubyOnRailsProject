@@ -162,7 +162,7 @@ em { color: #5d6d1e; }
 	border: none;
 }
 
-#templatemo_menu ul li a:hover, #templatemo_menu ul li .current {
+#templatemo_menu ul li a:hover {
 	height: 38px;
 	padding-top: 10px;
 	color: #fff;
