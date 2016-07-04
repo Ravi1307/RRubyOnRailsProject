@@ -1,0 +1,101 @@
+<head>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="keywords" content="rblog, blog" />
+	<meta name="description" content="RBlog is developed using Ruby on Rails" />
+	
+	<link href="/assets/templatemo_style.css" rel="stylesheet" type="text/css" />
+	<link href="/assets/s3slider.css" rel="stylesheet" type="text/css" />
+	
+	<script type="text/javascript" src="/assets/jquery.js"></script>
+	<script type="text/javascript" src="/assets/s3Slider.js"></script>
+	<script type="text/javascript">
+    	$(document).ready(function() {
+        	$('#slider').s3Slider({
+            	timeOut: 1600
+        	});
+    	});
+	</script>
+	
+</head>
+
+<body>
+	
+	<div id="templatemo_wrapper">
+		
+		<div id="templatemo_menu">
+                
+        	<ul>
+            	<li> <a href="index.html" class="current">RBlog</a> </li>
+            	<li> <a href="sitemap.html">Sitemap</a> </li>
+            	<li> <a href="about.html">About Us</a> </li>
+            	<li> <a href="contact.html">Contact</a> </li>
+        	</ul>	
+    	
+    	</div> <!-- end of menu -->
+        
+        <div id="templatemo_left_column">
+    
+        	<div id="templatemo_header">
+        	
+            	<div id="site_title">
+                	
+                	<h1>
+                		<a href="http://localhost:3000/rblog/index" target="_parent"> R<strong>Blog</strong><span>This is a blog</span> </a>
+                	</h1>
+            	
+            	</div> <!-- end of site title -->
+            	
+        	</div> <!-- end of header -->  
+        	
+        	<div id="templatemo_sidebar">
+    		
+            	<div id="templatemo_rss">
+            	
+                	<a href="#">SUBSCRIBE NOW <br /> <span>to our rss feed</span> </a>
+                	
+            	</div>
+            
+            	<h4>Categories</h4>
+            	
+            	<ul class="templatemo_list">
+                	<li><a href="#">Nam auctor</a></li>
+                	<li><a href="#">Aliquam quam</a></li>
+            	</ul>
+            
+            	<div class="cleaner_h40"></div>
+            	
+            	<h4>Friends</h4>
+            	
+            	<ul class="templatemo_list">
+                	<li><a href="#">Curabitur sed lacinia</a></li>
+                	<li><a href="#">Vestibulum laoreet tincidunt</a></li>
+                	<li><a href="#">Nullam nec mi enim</a></li>
+                	<li><a href="#">Aliquam quam nulla</a></li>
+                	<li><a href="#">Curabitur non felis massa</a></li>
+            	</ul>
+            
+        	</div> <!-- end of side bar --> 
+    
+    	</div> <!-- end of left column -->
+    	
+    	<%= yield %>
+    	
+		<div class="cleaner_h20"></div>
+  	
+  		<div id="templatemo_footer">
+    	
+			Copyright &copy; 2048 <a href="#">Your Company Name</a> | 
+        	<a href="http://www.iwebsitetemplate.com" target="_parent">Website Templates</a> by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
+        
+    	</div>
+  
+    	<div class="cleaner"></div>
+	
+   </div> <!-- end of wrapper -->
+   
+	<div align=center>
+		This template downloaded form <a href='http://all-free-download.com/free-website-templates/'>free website templates</a>
+	</div>
+	
+</body>

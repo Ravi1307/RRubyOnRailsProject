@@ -1,5 +1,17 @@
 class RblogController < ApplicationController
-  layout false;
+  
+  layout "rblog.html";
+  
   def index
   end
+  
+  def about
+  end
+  
+  def contact
+  end
+  
+  def sitemap
+  end
+  
 end
