@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------------
 	s3Slider
 	
-	Developped By: Boban Karišik -> http://www.serie3.info/
-        CSS Help: Mészáros Róbert -> http://www.perspectived.com/
+	Developped By: Boban KariÅ¡ik -> http://www.serie3.info/
+        CSS Help: MÃ©szÃ¡ros RÃ³bert -> http://www.perspectived.com/
 	Version: 1.0
 	
 	Copyright: Feel free to redistribute the script/modify it, as
@@ -44,11 +44,11 @@
             } else {
                 console.log("Poof..");
             }
-        }
+        };
         
         var makeSlider = function() {
             current = (current != null) ? current : items[(items.length-1)];
-            var currNo      = jQuery.inArray(current, items) + 1
+            var currNo      = jQuery.inArray(current, items) + 1;
             currNo = (currNo == items.length) ? 0 : (currNo - 1);
             var newMargin   = $(element).width() * currNo;
             if(faderStat == true) {
@@ -98,7 +98,7 @@
                     }
                 }
             }
-        }
+        };
         
         makeSlider();
 
