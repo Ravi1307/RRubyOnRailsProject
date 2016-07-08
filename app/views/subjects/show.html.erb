@@ -1,0 +1,40 @@
+<h1>Subjects#show</h1>
+<p>Find me in app/views/subjects/show.html.erb</p>
+
+<% @page_title="Subjects" %>
+
+<%= link_to("<<back to list",{:action=>'index'},:class=>'back-link') %>
+
+<div class="subjects show">
+	
+	<h2>Show Subjects </h2>
+
+<table summary="Subject detail view">
+	<tr>
+		
+		<th>Name</th>
+		<td><%= @subject.name %> </td>
+		
+		<th>Position</th>
+		<td><%= @subject.position %> </td>
+		
+		<th>Visible</th>
+		<td><%= @subject.visible ? 'true' : 'false' %> </td>
+		
+		<th>Created</th>
+		<td><%= @subject.created_at %> </td>
+		
+		<th>Updated</th>
+		<td><%= @subject.updated_at %> </td>
+	</tr>
+</table>
+<% time = Time.now.last_year.end_of_month.beginning_of_day %>
+<%= "time issss #{time}" %> 
+
+<br/>
+
+Number Currency
+
+<br/>
+<%= number_to_currency(34.77) %>
+

@@ -1,0 +1,39 @@
+<h1>Subjects#new</h1>
+<p>Find me in app/views/subjects/new.html.erb</p>
+
+<%= link_to("<<back to list", {:action=>'index'}, :class=>'back-link') %>
+
+<div class="subjects new" >
+	
+	<h2>Create Subjects</h2>
+	
+	<%= form_for(:subject, :url=>{:action=>'create'}) do |f| %>
+	
+	<table summary="Subject form fields" >
+		
+		<tr>
+			
+			<th>Name</th>
+			<td> <%= f.text_field(:name) %> </td>
+			
+			<th>Position</th>
+			<td> <%= f.text_field(:position) %> </td>
+			
+			<th>Visible</th>
+			<td> <%= f.text_field(:visible) %> </td>
+			<th>Date and Time</th>
+		<td><%= f.datetime_select(:created_at) %> </td>
+		<br/>
+		<br/>
+		<th>Position</th>
+		<td><%= f.select(:position,1..10) %> </td>
+			
+		</tr>
+		
+	</table>
+	
+	<div class="form-buttons">
+		<%= submit_tag("Create Subject") %>
+	</div>
+	<% end %>
+</div>
