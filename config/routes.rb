@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'rblog/sitemap';
 
   
-  match ':controller(/:action(/:id))', :via=>[:get,:post]
+  match ':controller(/:action(/:id))', :via => [:get,:post];
+  match ':controller(/:action(/:postId))', :via => [:get, :post];
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
