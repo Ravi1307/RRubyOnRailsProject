@@ -16,12 +16,31 @@
 	</script>
 	
 	<style type="text/css">
+		
 		#templatemo_menu ul li #index {
+			
 			height: 38px;
 			padding-top: 10px;
 			color: #fff;
 			background: url(/assets/templatemo_menu_hover.png) bottom no-repeat;
+		
 		}
+		
+		.more {
+			
+			margin-top: -27px;
+			float: right;
+			
+		}
+		
+		#next, #previous {
+			
+			color: #781919;
+			font-size: 20px; 
+			font-style: italic;
+			
+		}
+		
 	</style>
 	
 </head>
@@ -44,15 +63,31 @@
                 	
                		<p> <%= simple_format(rblog.post_message.first(200)) %> </p>
               			
-              		<a href="blog_post?postId=<%= rblog.id %>">Continue reading...</a>
+              		<% if rblog.post_message.size > 200 %>
+              			
+              			<a href="blog_post?postId=<%= rblog.id %>" class="more">Continue reading...</a>
                 
+                	<% end %>
+                	
             	</div> <!-- end of post section -->
             
             <% end %>
             
+            <% if @rblogs_count > (@from + $rblogs_limit) %>
+            	
+            	<a href="index?from=<%= (@from + $rblogs_limit) %><%= ((@author == nil) ? "" : "&author=#{@author}") %>" id="next" style="float: right; padding-right: 20px;">Next</a>
+            	
+            <% end %>
+            
+            <% if 0 <= (@from - $rblogs_limit) %>
+            	
+            	<a href="index?from=<%= (@from - $rblogs_limit) %><%= ((@author == nil) ? "" : "&author=#{@author}") %>" id="previous" style="float: left; paddingleft: 20px;">Previous</a>
+            	
+            <% end %>
+            	
         </div> <!-- end of main -->
     	
-  		<div class="cleaner"></div>
+  		<div class="cleaner"></div><br/>
   		
   	</div> <!-- end of right column -->
     

@@ -2,19 +2,26 @@ class RblogController < ApplicationController
   
   layout "rblog.html";
   
-  $rblogs_limit = 5;
-  $rblogs_from = 0;
-  #$rblogs_max = Rblog.recent.size;
+  $rblogs_limit = 3;
   
   def index
     
-    @rblogs = Rblog.recent $rblogs_limit, $rblogs_from;
+    @author = params[:author];
+    @from = params[:from].to_i;
+    @rblogs = Rblog.recent @author, $rblogs_limit, @from;
+    @rblogs_count = ((@author == nil) ? Rblog.count : Rblog.count_authors(@author));
     
   end
   
   def blog_post
     
     @postId = params[:postId];
+    
+  end
+
+  def sitemap
+    
+    @authors = Rblog.authors;
     
   end
   
@@ -36,17 +43,12 @@ class RblogController < ApplicationController
       
     end
     
-    #$rblogs_max = Rblog.recent.size;
-    
   end
   
   def about
   end
   
   def contact
-  end
-  
-  def sitemap
   end
   
 end
