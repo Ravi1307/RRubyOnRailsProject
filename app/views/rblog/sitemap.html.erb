@@ -16,6 +16,12 @@
 			
 		}
 		
+		a {
+			
+			text-decoration: none;
+			
+		}
+		
 	</style>
 	
 </head>
@@ -24,22 +30,27 @@
 
     <div id="templatemo_right_column">
     
+    	<% authors = 1; %>
     	<% @authors.each do |author| %>
     	
         	<div id="templatemo_main">
         
-            	<h2> <%= author %> </h2>
+            	<h2> <%= "#{authors}. #{author}" %> </h2>
             
             	<div id="gallery">
                 
                 	<ul>
                 
+                		<% post_titles = 1; %>
                 		<% Rblog.post_titles(author).each do |rpost| %>
-                    		<li style="padding: 5px; margin: 5px;">
+                    		
+                    		<li style="padding: 5px; margin: 5px; margin-left: 10px;">
                         		
-                        		<a> <%= rpost.post_title %> </a>
+                        		<a href="blog_post?postId=<%= rpost.id %>"> <%= "#{post_titles}. #{rpost.post_title}" %> </a>
                         		
                     		</li>
+                    		
+                    		<% post_titles += 1; %>
                     		
                     	<% end %>
                  
@@ -48,6 +59,8 @@
             	</div> <!-- end of gallery -->
         
         	</div> <!-- end of main -->
+        	
+        	<% authors += 1; %>
         	
         <% end %>
         
