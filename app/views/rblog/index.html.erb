@@ -3,17 +3,6 @@
 	<title>Home :: RBlog</title>
 	
 	<link href="/assets/templatemo_style.css" rel="stylesheet" type="text/css" />
-	<link href="/assets/s3slider.css" rel="stylesheet" type="text/css" />
-	
-	<script type="text/javascript" src="/assets/jquery.js"></script>
-	<script type="text/javascript" src="/assets/s3Slider.js"></script>
-	<script type="text/javascript">
-    	$(document).ready(function() {
-        	$('#slider').s3Slider({
-            	timeOut: 1600
-        	});
-    	});
-	</script>
 	
 	<style type="text/css">
 		
@@ -30,6 +19,7 @@
 			
 			margin-top: -27px;
 			float: right;
+			text-decoration: none;
 			
 		}
 		
@@ -57,31 +47,33 @@
             	
                		<span class="comment"> <%= rblog.id %> </span>
             		
-               		<h2> <a href="blog_post?postId=<%= rblog.id %>"> <%= rblog.post_title %> </a> </h2>
+               		<h2> <%= link_to("#{rblog.post_title}", {:action => 'blog_post', :postStatus => 'show', :postId => "#{rblog.id}"}) %> </h2>
                 	
-   					<strong>Author:</strong> <%= rblog.author %>  |  <%= rblog.updated_at.to_datetime.strftime("%B %d, %Y at %I:%M %p") %> <br /> <!-- December 28, 2048 -->
+   					<strong>Author:</strong> <%= rblog.author %> <strong> | </strong> <%= rblog.updated_at.to_datetime.strftime("%B %d, %Y at %I:%M %p") %> <br />
                 	
-               		<p> <%= simple_format(rblog.post_message.first(150)) %> </p>
-              			
-              		<% if rblog.post_message.size > 150 %>
-              			
-              			<a href="blog_post?postId=<%= rblog.id %>" class="more">Continue reading...</a>
-                
-                	<% end %>
                 	
+               		<p> 
+               			
+               			<% post_message = rblog.post_message.split("\n"); %>
+               			<%= simple_format(post_message.take(5).join("\n")); %>
+               			
+               			<%= link_to(((post_message.length > 5) ? "...more..." : ""), {:action => 'blog_post', :postStatus => 'show', :postId => "#{rblog.id}"}, :class => 'more') %>
+               			
+               		</p>
+              		
             	</div> <!-- end of post section -->
             
             <% end %>
             
-            <% if @rblogs_count > (@from + $rblogs_limit) %>
+            <% if @rblogs_count > (@from + @rblogs_limit) %>
             	
-            	<a href="index?from=<%= (@from + $rblogs_limit) %><%= ((@author == nil) ? "" : "&author=#{@author}") %>" id="next" style="float: right; padding-right: 20px;">Next</a>
+            	<%= link_to("Next", {:action => 'index', :author => "#{@author}", :from => "#{@from + @rblogs_limit}"}, :id => 'next', :style => "float: right; padding-right: 20px;") %>
             	
             <% end %>
             
-            <% if 0 <= (@from - $rblogs_limit) %>
+            <% if 0 <= (@from - @rblogs_limit) %>
             	
-            	<a href="index?from=<%= (@from - $rblogs_limit) %><%= ((@author == nil) ? "" : "&author=#{@author}") %>" id="previous" style="float: left; paddingleft: 20px;">Previous</a>
+            	<%= link_to("Previous", {:action => 'index', :author => "#{@author}", :from => "#{@from + @rblogs_limit}"}, :id => 'previous', :style => "float: left; padding-left: 20px;") %>
             	
             <% end %>
             	

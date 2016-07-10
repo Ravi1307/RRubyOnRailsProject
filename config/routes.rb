@@ -1,20 +1,21 @@
 Rails.application.routes.draw do
   
-  get 'subjects/index';
-  get 'subjects/show';
-  get 'subjects/delete';
-  get 'subjects/new';
-  get 'subjects/update';
+#  get 'subjects/index';
+#  get 'subjects/show';
+#  get 'subjects/delete';
+#  get 'subjects/new';
+#  get 'subjects/update';
   get 'rblog/index';
   get 'rblog/about';
   get 'rblog/contact';
   get 'rblog/sitemap';
 
   
-  match ':controller(/:action(/:id))', :via => [:get,:post];
-  match ':controller(/:action(/:postId))', :via => [:get, :post];
-  match ':controller(/:action(/:from, /:author))', :via => [:get, :post];
-  
+#  match ':controller(/:action(/:id))', :via => [:get,:post];
+  match ':controller(/:action(/:postStatus))', :via => [:get, :post];
+  match ':controller(/:action(/:postStatus/:postId))', :via => [:get, :post];
+  match ':controller(/:action(/:author/:from))', :via => [:get, :post];
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

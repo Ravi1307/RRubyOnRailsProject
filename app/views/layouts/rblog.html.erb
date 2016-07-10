@@ -1,5 +1,7 @@
 <head>
 	
+	<%= favicon_link_tag '/assets/rblog_icon.ico' %>
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="keywords" content="rblog, blog" />
 	<meta name="description" content="RBlog is developed using Ruby on Rails" />
@@ -13,10 +15,10 @@
 		<div id="templatemo_menu">
         	        
        		<ul>
-           		<li> <a href="index.html" id="index">RBlog</a> </li>
-           		<li> <a href="sitemap.html" id="sitemap">Sitemap</a> </li>
-           		<li> <a href="about.html" id="about">About Us</a> </li>
-            	<li> <a href="contact.html" id="contact">Contact</a> </li>
+           		<li> <%= link_to("RBlog", {:action => 'index'}, :id => 'index') %> </li>
+           		<li> <%= link_to("Sitemap", {:action => 'sitemap'}, :id => 'sitemap') %> </li>
+           		<li> <%= link_to("About Us", {:action => 'about'}, :id => 'about') %> </li>
+           		<li> <%= link_to("Contact", {:action => 'contact'}, :id => 'contact') %> </li>
         	</ul>	
     	
     	</div> <!-- end of menu -->
@@ -28,7 +30,7 @@
             	<div id="site_title">
                 	
                 	<h1>
-                		<a href="index" target="_parent"> R<strong>Blog</strong><span>This is a blog</span> </a>
+                		<%= link_to(simple_format("R<strong>Blog</strong><span>This is a blog</span>"), {:action => 'index'}, :id => 'index') %>
                 	</h1>
             	
             	</div> <!-- end of site title -->
@@ -39,7 +41,7 @@
     		
             	<div id="templatemo_rss">
             	
-                	<br /> <a href="blog_post#new">CREATE NEW POST</a>
+                	<br /> <%= link_to("CREATE NEW POST", {:action => 'blog_post', :postStatus => 'new'}) %>
                 	
             	</div>
             	
@@ -49,7 +51,7 @@
                 	
                 	<% Rblog.authors.each do |author| %>
                 		
-                		<li> <a href="index?author=<%= author %>"> <%= author %> </a> </li>
+                		<li> <%= link_to("#{author}", {:action => 'index', :author => "#{author}"}) %> </li>
                 		
                 	<% end %>
                 	

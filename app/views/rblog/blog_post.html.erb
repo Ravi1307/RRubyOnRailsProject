@@ -2,7 +2,7 @@
 	
 	<title>
 		
-		<%= (@postId == nil || @postId == '0') ? "NewPost" : "BlogPost" %> :: RBlog
+		<%= ((@postStatus == 'new') ? "NewPost" : ((@postStatus == 'edit') ? "EditPost" : "BlogPost")) %> :: RBlog
 		 
 	</title>
 	
@@ -37,6 +37,13 @@
 			
 		}
 		
+		#cancel_post {
+			
+			width: auto;
+			float: left;
+			
+		}
+		
 		form {
 			
 			margin-top: 10px;
@@ -54,18 +61,18 @@
         
         <div id="templatemo_main">
         
-        <% if @postId == nil || @postId == '0'  %>
+        <% if(@postStatus == 'new' || @postStatus == 'edit')  %>
         
-        	<div class="post_section" id="new" >
+        	<div class="post_section" class="new edit" >
         		
         		<h2>New Post</h2>
         		
-        		<%= form_for(:blog_post, :url => {:action => 'new_post'}) do |form| %>
+        		<%= form_for(:blog_post, :url => ((@postStatus == 'new') ? {:action => 'new'} : {:action => 'edit', :postId => @rblog.id})) do |form| %>
         			
-        			<%= form.text_field(:author, :placeholder => "Author") %>
-        			<%= form.text_field(:post_title, :placeholder => "Blog Post Title") %>
-        			<%= form.text_area(:post_message, :placeholder => "Blog Post Message") %>
-        			<%= form.submit(:id => "submit_post", :value => "Post") %>
+        			<%= form.text_field(:author, :placeholder => "Author", :required => true, :value => ((@rblog == nil) ? "" : @rblog.author)) %>
+        			<%= form.text_field(:post_title, :placeholder => "Blog Post Title", :required => true, :value => ((@rblog == nil) ? "" : @rblog.post_title)) %>
+        			<%= form.text_area(:post_message, :placeholder => "Blog Post Message", :required => true, :value => ((@rblog == nil) ? "" : @rblog.post_message)) %>
+        			<%= form.submit(:id => "submit_post", :value => ((@postStatus == 'new') ? 'Post' : 'Update')) %>
         			
         		<% end %>
         		
@@ -73,15 +80,16 @@
         	
         <% else %>
         
-        	<% rblog = Rblog.find(@postId) %>
         	
-            <div class="post_section" id="old">
-            
-                <h2> <%= rblog.post_title %> </h2>
+            <div class="post_section" class="old" >
+            	
+                <h2> <%= @rblog.post_title %> </h2>
     
-                <strong>Author:</strong> <%= rblog.author %>  |  <%= rblog.updated_at.to_datetime.strftime("%B %d, %Y at %I:%M %p") %> <br /> <br /> <!-- December 28, 2048 -->
-                	
-              	<p> <%= simple_format(rblog.post_message) %> </p>
+                <%= link_to("Edit", :action => 'blog_post', :postStatus => 'edit', :postId => "#{@postId}") %> <strong> | </strong>
+        		<%= link_to("Delete", :action => 'delete', :postId => "#{@postId}") %> <strong> | </strong>
+        		<strong>Author:</strong> <%= @rblog.author %> <strong> | </strong> <%= @rblog.updated_at.to_datetime.strftime("%B %d, %Y at %I:%M %p") %> <br />
+                
+              	<p> <%= simple_format(@rblog.post_message) %> </p>
               	
 		  	</div>
             
