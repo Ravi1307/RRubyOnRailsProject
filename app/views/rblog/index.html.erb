@@ -47,7 +47,7 @@
             	
                		<span class="comment"> <%= rblog.id %> </span>
             		
-               		<h2> <%= link_to("#{rblog.post_title}", {:action => 'blog_post', :postStatus => 'show', :postId => "#{rblog.id}"}) %> </h2>
+               		<h2> <%= link_to("#{rblog.post_title}", {:controller => 'rblog', :action => 'blog_post', :postStatus => 'show', :postId => "#{rblog.id}"}) %> </h2>
                 	
    					<strong>Author:</strong> <%= rblog.author %> <strong> | </strong> <%= rblog.updated_at.to_datetime.strftime("%B %d, %Y at %I:%M %p") %> <br />
                 	
@@ -57,7 +57,7 @@
                			<% post_message = rblog.post_message.split("\n"); %>
                			<%= simple_format(post_message.take(5).join("\n")); %>
                			
-               			<%= link_to(((post_message.length > 5) ? "...more..." : ""), {:action => 'blog_post', :postStatus => 'show', :postId => "#{rblog.id}"}, :class => 'more') %>
+               			<%= link_to(((post_message.length > 5) ? "...more..." : ""), {:controller => 'rblog', :action => 'blog_post', :postStatus => 'show', :postId => "#{rblog.id}"}, :class => 'more') %>
                			
                		</p>
               		
@@ -67,13 +67,13 @@
             
             <% if @rblogs_count > (@from + @rblogs_limit) %>
             	
-            	<%= link_to("Next", {:action => 'index', :author => "#{@author}", :from => "#{@from + @rblogs_limit}"}, :id => 'next', :style => "float: right; padding-right: 20px;") %>
+            	<%= link_to("Next", {:controller => 'rblog', :action => 'index', :author => "#{@author}", :from => "#{@from + @rblogs_limit}"}, :id => 'next', :style => "float: right; padding-right: 20px;") %>
             	
             <% end %>
             
             <% if 0 <= (@from - @rblogs_limit) %>
             	
-            	<%= link_to("Previous", {:action => 'index', :author => "#{@author}", :from => "#{@from + @rblogs_limit}"}, :id => 'previous', :style => "float: left; padding-left: 20px;") %>
+            	<%= link_to("Previous", {:controller => 'rblog', :action => 'index', :author => "#{@author}", :from => "#{@from + @rblogs_limit}"}, :id => 'previous', :style => "float: left; padding-left: 20px;") %>
             	
             <% end %>
             	

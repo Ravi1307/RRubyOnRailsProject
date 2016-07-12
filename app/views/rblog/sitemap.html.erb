@@ -46,7 +46,7 @@
                     		
                     		<li style="padding: 5px; margin: 5px; margin-left: 10px;">
                         		
-                        		<a href="blog_post?postId=<%= rpost.id %>"> <%= "#{post_titles}. #{rpost.post_title}" %> </a>
+                        		<%= link_to("#{post_titles}. #{rpost.post_title}", {:controller => 'rblog', :action => 'blog_post', :postStatus => 'show', :postId => "#{rpost.id}"}) %>
                         		
                     		</li>
                     		
