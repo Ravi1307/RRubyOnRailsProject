@@ -73,7 +73,7 @@
             
             <% if 0 <= (@from - @rblogs_limit) %>
             	
-            	<%= link_to("Previous", {:controller => 'rblog', :action => 'index', :author => "#{@author}", :from => "#{@from + @rblogs_limit}"}, :id => 'previous', :style => "float: left; padding-left: 20px;") %>
+            	<%= link_to("Previous", {:controller => 'rblog', :action => 'index', :author => "#{@author}", :from => "#{@from - @rblogs_limit}"}, :id => 'previous', :style => "float: left; padding-left: 20px;") %>
             	
             <% end %>
             	
