@@ -67,7 +67,7 @@
         		
         		<h2>New Post</h2>
         		
-        		<%= form_for(:blog_post, :url => ((@postStatus == 'new') ? {:controller => 'rblog', :action => 'new'} : {:controller => 'rblog', :action => 'edit', :postId => @rblog.id})) do |form| %>
+        		<%= form_for(:blog_post, :url => ((@postStatus == 'new') ? {:controller => 'rblog', :action => 'create'} : {:controller => 'rblog', :action => 'update', :postId => @rblog.id})) do |form| %>
         			
         			<%= form.text_field(:author, :placeholder => "Author", :required => true, :value => ((@rblog == nil) ? "" : @rblog.author)) %>
         			<%= form.text_field(:post_title, :placeholder => "Blog Post Title", :required => true, :value => ((@rblog == nil) ? "" : @rblog.post_title)) %>
@@ -86,7 +86,7 @@
                 <h2> <%= @rblog.post_title %> </h2>
     
                 <%= link_to("Edit", {:controller => 'rblog', :action => 'blog_post', :postStatus => 'edit', :postId => "#{@postId}"}) %> <strong> | </strong>
-        		<%= link_to("Delete", {:controller => 'rblog', :action => 'delete', :postId => "#{@postId}"}) %> <strong> | </strong>
+        		<%= link_to("Delete", {:controller => 'rblog', :action => 'destroy', :postId => "#{@postId}"}) %> <strong> | </strong>
         		<strong>Author:</strong> <%= @rblog.author %> <strong> | </strong> <%= @rblog.updated_at.to_datetime.strftime("%B %d, %Y at %I:%M %p") %> <br />
                 
               	<p> <%= simple_format(@rblog.post_message) %> </p>

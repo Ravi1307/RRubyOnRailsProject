@@ -4,7 +4,7 @@ class RblogController < ApplicationController
   
   def index
   
-    @rblogs_limit = 3;  
+    @rblogs_limit = 3;
     @author = ((params[:author] == nil) ? 'all' : params[:author]);
     @from = params[:from].to_i;
     @rblogs = Rblog.recent @author, @rblogs_limit, @from;
@@ -26,7 +26,7 @@ class RblogController < ApplicationController
     
   end
   
-  def new
+  def create
     
     @rblog = Rblog.new(params.require(:blog_post).permit(:author, :post_title, :post_message));
     
@@ -46,7 +46,7 @@ class RblogController < ApplicationController
     
   end
   
-  def edit
+  def update
     
     @rblog = Rblog.find(params[:postId]);
     
